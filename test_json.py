@@ -42,4 +42,4 @@ def structure(name) :
                     cord = stone[bloc]
                     print(f'{cord["x"]}/{cord["y"]}/{cord["z"]}')
 
-structure("404")
+structure("hause")

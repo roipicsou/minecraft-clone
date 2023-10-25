@@ -107,7 +107,7 @@ def structure(x_point, z_point, y_point, name) :
                     y = cord["y"]
                     z = cord["z"]
                     print(f"{x}/{y}/{z}")
-                    voxel = Voxel(position=(x_point - x,y_point - y,z_point + z), texture='assets/stone.png')
+                    voxel = Voxel(position=(x_point - x,z_point + z, y_point - y), texture='assets/stone.png')
         if "grass" in structure : 
             stone = structure["grass"]
             print(stone)
@@ -128,7 +128,7 @@ def structure(x_point, z_point, y_point, name) :
                     y = cord["y"]
                     z = cord["z"]
                     print(f"{x}/{y}/{z}")
-                    voxel = Voxel(position=(x_point - x,y_point - y,z_point + z), texture='assets/grass.png')
+                    voxel = Voxel(position=(x_point - x,z_point + z, y_point - y), texture='assets/grass.png')
 
 
 for z in range(max_platofrme):
@@ -150,7 +150,7 @@ for z in range(max_platofrme):
         if c == 1 :
             voxel = Voxel(position=(x, 1, z),texture=random.choice(blocks_pose))
 
-structure(-1,0,0,"404")
+structure(-1,0,0,"hause")
 
 player = FirstPersonController()
 
