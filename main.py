@@ -17,7 +17,7 @@ window.exit_button.visible = False
 
 punch = Audio('assets/punch', autoplay=False)
 
-max_platofrme = 15
+max_platofrme = 20
 min_y_platforme = -2
 
 blocks = [
@@ -146,12 +146,11 @@ for z in range(max_platofrme) :
 
 for z in range(max_platofrme):
     for x in range(max_platofrme):
-        c = random.randint(0,3)
+        c = random.randint(0,10)
         if c == 1 :
             voxel = Voxel(position=(x, 1, z),texture=random.choice(blocks_pose))
 
 structure(-1,0,0,"404")
-structure(-1,10,0,"404")
 
 player = FirstPersonController()
 
