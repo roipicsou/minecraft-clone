@@ -5,7 +5,7 @@ import json
 
 app = Ursina()
 
-jump_height = 2 # Default: 2
+jump_height = 1.5 # Default: 2
 jump_duration = 0.5 # Default: 0.5
 jump_fall_after = 0.35 # Default: 0.35
 gravity_scale = 1 # Default: 1
@@ -17,7 +17,7 @@ window.exit_button.visible = False
 
 punch = Audio('assets/punch', autoplay=False)
 
-max_platofrme = 20
+max_platofrme = 10
 min_y_platforme = -2
 
 blocks = [
@@ -151,6 +151,7 @@ for z in range(max_platofrme):
             voxel = Voxel(position=(x, 1, z),texture=random.choice(blocks_pose))
 
 structure(-1,0,0,"hause")
+structure(-1,0,1,"404")
 
 player = FirstPersonController()
 

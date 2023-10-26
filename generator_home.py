@@ -86,8 +86,7 @@ def structure(x_point, z_point, y_point, name) :
                     print(f"{x}/{y}/{z}")
                     voxel = Voxel(position=(x_point - x,z_point + z, y_point - y), texture='assets/grass.png')
 
-structure(-1,0,0,"hause")
-voxel = Voxel(position=(0,0,0), texture='assets/stone.png')
+structure(-1,-1,0,"hause")
 
 player = FirstPersonController()
 
