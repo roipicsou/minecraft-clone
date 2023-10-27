@@ -86,10 +86,10 @@ class Voxel(Button):
 
 def structure(x_point, z_point, y_point, name) :
     if name in data :
+        print(f"pour le structure {name} il y a :")
         structure = data[name]
         if "stone" in structure : 
             stone = structure["stone"]
-            print(stone)
             nb = 1
             while True :
                 bloc = "bloc_" + str(nb)
@@ -98,7 +98,7 @@ def structure(x_point, z_point, y_point, name) :
                 else :
                     nb -= 1
                     break
-            print(f"le nombre de bloc est de {nb}")
+            print(f"    {nb} bloc de stone")
             for i in range(1, nb + 1) :
                 bloc = "bloc_" + str(i)
                 if bloc in stone :
@@ -106,11 +106,9 @@ def structure(x_point, z_point, y_point, name) :
                     x = cord["x"]
                     y = cord["y"]
                     z = cord["z"]
-                    print(f"{x}/{y}/{z}")
                     voxel = Voxel(position=(x_point - x,z_point + z, y_point - y), texture='assets/stone.png')
         if "grass" in structure : 
-            stone = structure["grass"]
-            print(stone)
+            grass = structure["grass"]
             nb = 1
             while True :
                 bloc = "bloc_" + str(nb)
@@ -119,15 +117,14 @@ def structure(x_point, z_point, y_point, name) :
                 else :
                     nb -= 1
                     break
-            print(f"le nombre de bloc est de {nb}")
+            print(f"    {nb} bloc de gasse")
             for i in range(1, nb + 1) :
                 bloc = "bloc_" + str(i)
-                if bloc in stone :
-                    cord = stone[bloc]
+                if bloc in grass :
+                    cord = grass[bloc]
                     x = cord["x"]
                     y = cord["y"]
                     z = cord["z"]
-                    print(f"{x}/{y}/{z}")
                     voxel = Voxel(position=(x_point - x,z_point + z, y_point - y), texture='assets/grass.png')
 
 
