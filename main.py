@@ -2,6 +2,7 @@ from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
 import random
 import json
+import math
 
 app = Ursina()
 
@@ -11,6 +12,7 @@ jump_fall_after = 0.35 # Default: 0.35
 gravity_scale = 1 # Default: 1
 mouse_sensitivity = Vec2(40,40) # Default: (40,40)
 run_speed = 5 # Default: 5
+range_max = 20
 
 window.fps_counter.enabled = True
 window.exit_button.visible = False
@@ -84,10 +86,38 @@ class Voxel(Button):
                 print(f"le position du bloc {positions_bloc}")
                 positions_player = get_postions(str(player.get_position()), "player")
                 print(f"le position du player {positions_player}")
-                Voxel(position=self.position + mouse.normal, texture=blocks[block_id])
+                dis_bloc_player = calcul_point(positions_bloc[0], positions_player[0], positions_bloc[1], positions_player[1], positions_bloc[2], positions_player[2])
+                print(f"la distence entre le jouer et le bloc et de {dis_bloc_player}")
+                if dis_bloc_player <= range_max :
+                    print("pose du bloc")
+                    Voxel(position=self.position + mouse.normal, texture=blocks[block_id])
+                else :
+                    print(f"le bloc est torp loin de {dis_bloc_player - range_max} bloc")
             elif key == 'right mouse down':
-                destroy(self)
+                positions_bloc = get_postions(str(self.get_position()), "lol")
+                print(f"le position du bloc {positions_bloc}")
+                positions_player = get_postions(str(player.get_position()), "player")
+                print(f"le position du player {positions_player}")
+                dis_bloc_player = calcul_point(positions_bloc[0], positions_player[0], positions_bloc[1], positions_player[1], positions_bloc[2], positions_player[2])
+                print(f"la distence entre le jouer et le bloc et de {dis_bloc_player}")
+                if dis_bloc_player <= range_max :
+                    print("destructions du bloc du bloc")
+                    destroy(self)
+                else :
+                    print(f"le bloc est trop loin de {dis_bloc_player - range_max} bloc")
 
+
+def calcul_point(X1,X2,Y1,Y2,Z1,Z2) :
+    x = X1 - X2
+    x = x** 2
+    y = Y1 + Y2
+    y = y** 2
+    z = Z1 + Z2
+    z = z** 2
+    t = x + y + z
+    res = math.sqrt(t)
+    res = round(res)
+    return res
 
 def get_postions(donée, demande) :
     positions = donée
@@ -96,7 +126,6 @@ def get_postions(donée, demande) :
     x = 0
     y = 0
     z = 0
-    print(positions)
     list_postions = []
     for i in positions :
         if i == "," or "" :
@@ -104,33 +133,34 @@ def get_postions(donée, demande) :
         else :
             list_postions.append(i)
     if demande == "player" :
-        print("demande player")
         for i in list_postions :
             if i == "." :
                 id = list_postions.index(i)
-                print(list_postions[id - 1])
                 x = list_postions[id - 1]
+                x = int(x)
                 list_postions.remove(i)
                 break
         for i in list_postions :
             if i == "." :
                 id = list_postions.index(i)
                 y = list_postions[id - 1]
-                print(list_postions[id - 1])
+                y = int(y)
                 list_postions.remove(i)
                 break
         for i in list_postions :
             if i == "." :
                 id = list_postions.index(i)
                 z = list_postions[id - 1]
-                print(list_postions[id - 1])
+                z = int(z)
                 list_postions.remove(i)
                 break
     else :
-        print(list_postions)
         x = list_postions[0]
+        x = int(x)
         y =list_postions[2]
+        y = int(y)
         z = list_postions[4]
+        z = int(z)
     return [x,y,z]
 
 
