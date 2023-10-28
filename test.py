@@ -1,18 +1,24 @@
 import math
 
-positions_bloc =  [1, 0, 9]
-positions_player = [0, 0, 7]
-
-def calcul_point(X1,X2,Y1,Y2,Z1,Z2) :
+def calcul_point(X2,X1,Y2,Y1,Z2,Z1) :
     x = X1 - X2
+    print(x)
     x = x** 2
+    print(x)
     y = Y1 + Y2
+    print(y)
     y = y** 2
-    z = Z1 + Z2
+    print(y)
+    z = Z1 - Z2
+    print(z)
     z = z** 2
+    print(z)
     t = x + y + z
+    print(t)
     res = math.sqrt(t)
+    print(res)
     res = round(res)
+    print(res)
     return res
 
-print(calcul_point(positions_bloc[0], positions_player[0], positions_bloc[1], positions_player[1], positions_bloc[2], positions_player[2]))
+calcul_point(1,0,0,0,9,4)

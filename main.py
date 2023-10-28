@@ -12,7 +12,7 @@ jump_fall_after = 0.35 # Default: 0.35
 gravity_scale = 1 # Default: 1
 mouse_sensitivity = Vec2(40,40) # Default: (40,40)
 run_speed = 5 # Default: 5
-range_max = 20
+range_max = 5
 
 window.fps_counter.enabled = True
 window.exit_button.visible = False
@@ -107,12 +107,12 @@ class Voxel(Button):
                     print(f"le bloc est trop loin de {dis_bloc_player - range_max} bloc")
 
 
-def calcul_point(X1,X2,Y1,Y2,Z1,Z2) :
+def calcul_point(X2,X1,Y2,Y1,Z2,Z1) :
     x = X1 - X2
     x = x** 2
-    y = Y1 + Y2
+    y = Y1 - Y2
     y = y** 2
-    z = Z1 + Z2
+    z = Z1 - Z2
     z = z** 2
     t = x + y + z
     res = math.sqrt(t)
